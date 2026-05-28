@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "author": "Kunal Kumthekar",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -22.2, "left": -266, "attrs": {} },
+    {
+      "type": "board-st-nucleo-c031c6",
+      "id": "nucleo",
+      "top": -104.77,
+      "left": 123.82,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -13.2,
+      "left": -130.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 91.2,
+      "left": -288.55,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    }
+  ],
+  "connections": [
+    [ "$serialMonitor:TX", "nucleo:PA3", "", [] ],
+    [ "$serialMonitor:RX", "nucleo:PA2", "", [] ],
+    [ "nucleo:GND.4", "bb1:bn.25", "black", [ "v144", "h-105.6", "v-85.1" ] ],
+    [ "bb1:14b.j", "bb1:bn.11", "green", [ "v0" ] ],
+    [ "nucleo:PC6", "bb1:15t.d", "green", [ "h0" ] ],
+    [ "led1:A", "bb1:15t.a", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:14t.a", "", [ "$bb" ] ],
+    [ "r1:1", "bb1:14t.b", "green", [ "h67.2", "v-28.8" ] ],
+    [ "r1:2", "bb1:14t.c", "green", [ "h76.8", "v-78" ] ],
+    [ "bb1:14t.e", "bb1:14b.f", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

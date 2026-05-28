@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+elf = "build/Debug/nucleo_c031c6.elf"
+firmware = "build/Debug/nucleo_c031c6.elf"
+gdbServerPort = 3333

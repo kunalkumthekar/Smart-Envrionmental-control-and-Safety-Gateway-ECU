@@ -1,0 +1,26 @@
+{
+    "cmake.cmakePath": "cube-cmake",
+    "cmake.configureArgs": [
+        "-DCMAKE_COMMAND=cube-cmake"
+    ],
+    "cmake.preferredGenerators": [
+        "Ninja"
+    ],
+    "cmake.sourceDirectory": "${workspaceFolder}/nucleo_c031c6",
+    "cmake.buildDirectory": "${workspaceFolder}/nucleo_c031c6/build",
+    "cmake.copyCompileCommands": "${workspaceFolder}/nucleo_c031c6/compile_commands.json",
+
+    // 1. Configuration for the standard Clangd Extension
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/nucleo_c031c6/build"
+    ],
+
+    // 2. Configuration for your ST-Clangd extension - Pointing it to the subfolder build directory
+    "stm32cube-ide-clangd.path": "cube",
+    "stm32cube-ide-clangd.arguments": [
+        "starm-clangd",
+        "--compile-commands-dir=${workspaceFolder}/nucleo_c031c6/build",
+        "--query-driver=${env:CUBE_BUNDLE_PATH}/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-gcc*",
+        "--query-driver=${env:CUBE_BUNDLE_PATH}/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-g++*"
+    ]
+}

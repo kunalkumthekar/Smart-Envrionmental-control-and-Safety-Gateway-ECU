@@ -1,6 +1,11 @@
 #ifndef STATE_MACHINE_H
 #define STATE_MACHINE_H
 
+//Adding below lines as this file shall be called upon in C++ compiler
+#ifdef __cplusplus
+extern "C" {
+    #endif
+
 #include <stdint.h>
 
 typedef enum {
@@ -12,7 +17,11 @@ typedef enum {
     SYSTEM_EMERGENCY_STOP
 } SystemState;
 
-SystemState updateSystemState(float temperature, float threshold, float tolerance 
+SystemState updateSystemState(float temperature, float threshold, float tolerance, 
                             uint8_t sensor_fault, uint8_t emergency_stop);
 
-#endif
+#ifdef __cplusplus
+}
+#endif // CPLUSCPLUS
+
+#endif // STATE_MACHINE

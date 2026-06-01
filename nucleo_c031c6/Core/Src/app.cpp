@@ -28,13 +28,6 @@ void App_Run(void)
 
     temperature = Sensor_ReadTemperature();
 
-    char msg[64];
-    sprintf(msg, "ADC=%.2f\r\n", temperature);
-    HAL_UART_Transmit(&huart2,
-                  (uint8_t*)msg,
-                  strlen(msg),
-                  100);
-
     threshold = Sensor_ReadThreshold();
 
     fault = Sensor_CheckFault();

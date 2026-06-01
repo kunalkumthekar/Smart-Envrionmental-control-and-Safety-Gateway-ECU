@@ -117,6 +117,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     if(GPIO_Pin == GPIO_PIN_13)
     {
         emergency_flag = 1;
+        HAL_GPIO_WritePin(
+        GPIOA,
+        GPIO_PIN_12,
+        emergency_flag ? GPIO_PIN_SET : GPIO_PIN_RESET);
     }
 }
 

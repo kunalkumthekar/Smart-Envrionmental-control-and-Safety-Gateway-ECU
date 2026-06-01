@@ -17,7 +17,7 @@ typedef enum {
     SYSTEM_EMERGENCY_STOP
 } SystemState;
 
-SystemState updateSystemState(float temperature, float threshold, float tolerance, 
+SystemState updateSystemState(float temperature, uint8_t threshold, uint8_t tolerance, 
                             uint8_t sensor_fault, uint8_t emergency_stop);
 
 #ifdef __cplusplus

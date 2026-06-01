@@ -1,4 +1,5 @@
 #include "hardware_abstraction.h"
+#include <stdint.h>
 
 #ifdef UNIT_TEST
 
@@ -48,10 +49,12 @@ uint8_t HAL_HW_GetEmergencyStop(void)
 #else
 
 #include "main.h"
+#include "stm32c0xx_hal.h"
 
 #include <string.h>
 
 extern UART_HandleTypeDef huart2;
+extern ADC_HandleTypeDef hadc1;
 
 static volatile uint8_t emergency_flag = 0;
 
@@ -61,7 +64,11 @@ void HAL_HW_Init(void)
 
 float HAL_HW_ReadTemperatureSensor(void)
 {
-    return 32.0f;
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+    uint16_t adc = HAL_ADC_GetValue(&hadc1);
+    return (150.0f * adc) / 4095;
+    // return 32.0f;
 }
 
 float HAL_HW_ReadADCThreshold(void)

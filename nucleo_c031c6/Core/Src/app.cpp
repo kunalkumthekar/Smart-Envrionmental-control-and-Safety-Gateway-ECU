@@ -5,12 +5,20 @@
 #include "state_machine.h"
 #include "diagnostics.h"
 #include "hardware_abstraction.h"
+#include <cstdint>
+#include "stm32c0xx_hal.h"
+#include <cstdio>
+#include <cstring>
+#include "main.h"
+#include "stm32c0xx_hal_uart.h"
+
+extern UART_HandleTypeDef huart2;
 
 void App_Run(void)
 {
     float temperature;
-    float threshold;
-
+    uint8_t threshold;
+    uint8_t tolerance;
     unsigned char fault;
     unsigned char emergency;
 
@@ -19,6 +27,13 @@ void App_Run(void)
     SystemState state;
 
     temperature = Sensor_ReadTemperature();
+
+    char msg[64];
+    sprintf(msg, "ADC=%.2f\r\n", temperature);
+    HAL_UART_Transmit(&huart2,
+                  (uint8_t*)msg,
+                  strlen(msg),
+                  100);
 
     threshold = Sensor_ReadThreshold();
 
@@ -29,8 +44,8 @@ void App_Run(void)
     state = updateSystemState(
         temperature,
         threshold,
+        tolerance,
         fault,
-        10,
         emergency);
 
     Diagnostics_LogState(state);

@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug STM32 Wokwi",
+      "cwd": "${workspaceRoot}",
+      "executable": "${workspaceFolder}/nucleo_c031c6/build/Debug/nucleo_c031c6.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+
+      "servertype": "external",
+
+      "gdbTarget": "localhost:3333",
+
+      "gdbPath": "/usr/bin/gdb-multiarch",
+
+      "device": "STM32C031C6",
+
+      "runToEntryPoint": "main",
+
+      "svdFile": "${workspaceFolder}/nucleo_c031c6/STM32C0x1.svd"
+    }
+  ]
+}
